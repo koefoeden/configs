@@ -1,0 +1,7 @@
+# CPU, RAM, net & disk usage
+Stats.app
+
+# Local mount of drives
+Mountain duck (license required)
+sshfs + macfuse (buggy??)
+
