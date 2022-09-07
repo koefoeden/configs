@@ -13,6 +13,25 @@ alias porus="ssh -t -X -Y tqb695@porus01 'tmux attach -t general'"
 alias hulk="ssh -t -X -Y tqb695@hulk 'tmux attach -t general'" 
 
 
+show () {
+       head -500 $1 | column -t $1 | less -S
+}
+
+zshow () {
+        zcat $1 | head -500 | column -t | less -S
+}
+
+showcsv () {
+        head -500 $1 | column -t -s "," | less -S
+}
+
+zshowcsv () {
+        zcat $1 | head -500 | column -t -s "," | less -S
+}
+
+
+
+
 #  ---------------------------------------------------------------------------
 #
 #  Description:  This file holds all my BASH configurations and aliases
