@@ -13,6 +13,7 @@ alias porus="ssh -t -X -Y tqb695@porus01 'tmux attach -t general'"
 alias hulk="ssh -t -X -Y tqb695@hulk 'tmux attach -t general'" 
 
 
+# nice text reading functions
 show () {
        head -500 $1 | column -t $1 | less -S
 }
@@ -29,6 +30,8 @@ zshowcsv () {
         zcat $1 | head -500 | column -t -s "," | less -S
 }
 
+# revent HDF5 issues on Nidhgg/Ygg
+export HDF5_USE_FILE_LOCKING="FALSE"
 
 
 
