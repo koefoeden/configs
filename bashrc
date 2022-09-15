@@ -1,18 +1,3 @@
-# ssh (and mount) servers and attach a tmux session (must first be created)
-alias computerome="ssh -t -X -Y thokoe@ssh.computerome.dk 'tmux attach -t general'"
-alias mount_computerome="diskutil umount ~/ku_00016; \
-
-sshfs -o defer_permissions thokoe@ssh.computerome.dk:/home/projects/ku_00016/ ~/ku_00016/ -ocache=no -onolocalcaches -ovolname=ku_00016"
-
-alias nidhogg="ssh -t -X -Y tqb695@nidhogg 'tmux attach -t Thesis'"
-
-alias yggdrasil="ssh -t -X -Y tqb695@yggdrasil 'tmux attach -t general'"
-
-alias porus="ssh -t -X -Y tqb695@porus01 'tmux attach -t general'"
-
-alias hulk="ssh -t -X -Y tqb695@hulk 'tmux attach -t general'" 
-
-
 # nice text reading functions
 show () {
        head -500 $1 | column -t $1 | less -S
@@ -87,13 +72,13 @@ export HDF5_USE_FILE_LOCKING="FALSE"
 
 #   -----------------------------
 
-alias ls='ls -Gp'
+alias ls='ls -Gp --color=auto'
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias ll='ls -FGlAhp --color=auto'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
-# cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
+cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
@@ -111,9 +96,6 @@ alias show_options='shopt'                  # Show_options: display bash options
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
-trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
-ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
-alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
@@ -141,24 +123,6 @@ alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1m
 alias make5mb='mkfile 5m ./5MB.dat'         # make5mb:      Creates a file of 5mb size (all zeros)
 alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10mb size (all zeros)
 
-#   cdf:  'Cd's to frontmost window of MacOS Finder
-#   ------------------------------------------------------
-    cdf () {
-        currFolderPath=$( /usr/bin/osascript <<EOT
-            tell application "Finder"
-                try
-            set currFolder to (folder of the front window as alias)
-                on error
-
-            set currFolder to (path to desktop folder as alias)
-                end try
-                POSIX path of currFolder
-            end tell
-EOT
-        )
-        echo "cd to \"$currFolderPath\""
-        cd "$currFolderPath"
-    }
 
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
