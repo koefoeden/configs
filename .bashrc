@@ -72,11 +72,11 @@ export HDF5_USE_FILE_LOCKING="FALSE"
 
 #   -----------------------------
 
-alias ls='ls -Gp --color=auto'
+alias ls='ls -p --color=auto'
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ll='ls -FGlAhp --color=auto'                       # Preferred 'ls' implementation
+alias ll='ls -FlAhp --color=auto'           # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
