@@ -15,6 +15,10 @@ zshowcsv () {
         zcat $1 | head -500 | column -t -s "," | less -S
 }
 
+md5sum_dir () {
+       find $1 -type f -exec md5sum {} \; | sort -k 2 | md5sum
+}
+
 # revent HDF5 issues on Nidhgg/Ygg
 export HDF5_USE_FILE_LOCKING="FALSE"
 
