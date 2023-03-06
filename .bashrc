@@ -1,9 +1,9 @@
 # nice text reading functions
-show () {
+showtab () {
        head -500 $1 | column -t $1 | less -S
 }
 
-zshow () {
+zshowtab () {
         zcat $1 | head -500 | column -t | less -S
 }
 
@@ -47,6 +47,7 @@ export HDF5_USE_FILE_LOCKING="FALSE"
 
 #   Change Prompt
 #   ------------------------------------------------------------
+ export PS1="________________________________________________________________________________\n| \w @ \h (\u) \n| => "
  export PS2="| => "
 
 #   Set Paths
